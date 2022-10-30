@@ -29,10 +29,8 @@ namespace WebApplication2
                 sqlConnection.Open();
                 SqlCommand updateCommand = new SqlCommand("DELETE FROM demo WHERE id=@id", sqlConnection);
                 updateCommand.Parameters.AddWithValue("@id", int.Parse(TextBox1.Text));
-                updateCommand.ExecuteNonQuery();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "if (confirm('Press OK to delete!') == true){"+updateCommand.ExecuteNonQuery() +"; alert('Data deleted successfully.');}", true);
                 Clear_All();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Data deleted successfully.';)", true);
-
             }
             catch (SqlException ex)
             {
