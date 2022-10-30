@@ -41,7 +41,7 @@ namespace WebApplication2
                 cmd.Parameters.AddWithValue("@salary", int.Parse(TextBox5.Text));
                 cmd.ExecuteNonQuery();
                 sqlConnection.Close();
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Data updated successfully.';)", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "alert('Data updated successfully.')", true);
                 Clear_All();
 
 

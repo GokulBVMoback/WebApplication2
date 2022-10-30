@@ -50,8 +50,8 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/Employee_reg.aspx">Employee Registeration</a></li>
-                        <li><a runat="server" href="~/Employee_Display.aspx">Display All Employee</a></li>
+                        <li><a runat="server" href="~/Employee_reg.aspx">Register</a></li>
+                        <li><a runat="server" href="~/Employee_Display.aspx">Employee Details</a></li>
                         <li><a runat="server" href="~/Employee_Search.aspx">Search</a></li>
                         <li><a runat="server" href="~/Employee_Upt.aspx">Edit</a></li>
                         <li><a runat="server" href="~/Employee_Del.aspx">Delete Employee</a></li>
