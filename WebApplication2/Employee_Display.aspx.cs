@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace WebApplication2
 {
     public partial class Employee_Display : System.Web.UI.Page
     {
-        SqlConnection sqlConnection=new SqlConnection("Data Source=MOBACK;Initial Catalog=EmployeeManagement;Integrated Security=True");
-
+        string strcon = ConfigurationManager.ConnectionStrings["dbdemo"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
+            SqlConnection sqlConnection = new SqlConnection(strcon);
             try
             {
                 sqlConnection.Open();

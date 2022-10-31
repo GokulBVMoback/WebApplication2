@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing.Printing;
 using System.Linq;
@@ -9,10 +10,9 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication2
 {
-    public partial class Employee_Del : System.Web.UI.Page,Interface1
-    {
-        SqlConnection sqlConnection = new SqlConnection("Data Source=MOBACK;Initial Catalog=EmployeeManagement;Integrated Security=True");
-
+    public partial class Employee_Del : System.Web.UI.Page, Interface1
+    {   
+        string strcon = ConfigurationManager.ConnectionStrings["dbdemo"].ConnectionString;
         public void Clear_All()
         {
             TextBox1.Text = "";
@@ -24,17 +24,18 @@ namespace WebApplication2
 
         protected void del_btn_Click(object sender, EventArgs e)
         {
+            SqlConnection sqlConnection = new SqlConnection(strcon);
             try
             {
                 sqlConnection.Open();
                 SqlCommand updateCommand = new SqlCommand("DELETE FROM demo WHERE id=@id", sqlConnection);
                 updateCommand.Parameters.AddWithValue("@id", int.Parse(TextBox1.Text));
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "if (confirm('Press OK to delete!') == true){"+updateCommand.ExecuteNonQuery() +"; alert('Data deleted successfully.');}", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "script", "if (confirm('Press OK to delete!') == false){} else{" + updateCommand.ExecuteNonQuery() + "; alert('Data deleted successfully.');}", true);
                 Clear_All();
             }
             catch (SqlException ex)
             {
-                    Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.Message);
             }
             finally
             {

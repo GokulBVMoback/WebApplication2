@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace WebApplication2
 {
     public partial class Employee_Search : System.Web.UI.Page,Interface1
     {
-        SqlConnection sqlConnection = new SqlConnection("Data Source=MOBACK;Initial Catalog=EmployeeManagement;Integrated Security=True");
+        string strcon = ConfigurationManager.ConnectionStrings["dbdemo"].ConnectionString;
 
         public void Clear_All()
         {
@@ -24,6 +25,7 @@ namespace WebApplication2
 
         protected void search_btn_Click(object sender, EventArgs e)
         {
+            SqlConnection sqlConnection = new SqlConnection(strcon);
             try
             {
                 sqlConnection.Open();
